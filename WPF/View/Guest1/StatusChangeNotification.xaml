@@ -1,0 +1,21 @@
+﻿<Window x:Class="SimsProject.WPF.View.Guest1.StatusChangeNotification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Notification" Height="140" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ViewStatusCommand}" Gesture="F1" />
+        <KeyBinding Command="{Binding GoBackCommand}" Gesture="ESC" />
+    </Window.InputBindings>
+    <Grid Style="{DynamicResource BGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Grid.Row="0" Grid.ColumnSpan="5">One of your requests got reviewed.</Label>
+        <Button FontSize="18" x:Name="Button" Content="View Request Status" Grid.Row="1" Margin="10,5,10,5" Command="{Binding ViewStatusCommand}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,103 @@
+﻿<Window x:Class="SimsProject.WPF.View.Guest2.ExploreTours"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="700" Width="900"
+        Background="WhiteSmoke">
+
+    <Grid Margin="10,0,0,18" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="429*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="511*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0"  FontSize="28" Margin="50,0,236,0">Location :</Label>
+        <Label VerticalContentAlignment="Center" Grid.Column="0" Margin="50,51,85,0" FontSize="28" Grid.RowSpan="2">Language :</Label>
+        <Label VerticalContentAlignment="Center" Grid.Row="1" Margin="50,51,45,51" Grid.Column="0" FontSize="28" Grid.RowSpan="3"  >Tour Duration :</Label>
+        <Label VerticalContentAlignment="Center" Grid.Row="3" Margin="50,0,241,51" Grid.Column="0" FontSize="28" Grid.RowSpan="2" Grid.ColumnSpan="2">Number of guests :</Label>
+
+        <ComboBox x:Name="ComboBoxCity"  ItemsSource="{Binding CityList, Mode=OneWay}" SelectedItem="{Binding SelectedCity, Mode=TwoWay}"  VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5,10,137,10"   />
+        <ComboBox x:Name="ComboBoxCountry" ItemsSource="{Binding CountryList, Mode=OneWay}"  SelectedItem="{Binding SelectedCountry, Mode=TwoWay}" SelectedIndex="{Binding SelectedCountryIndex, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Margin="138,10,5,10" />
+        <TextBox x:Name="TextBoxLanguage" Text="{Binding TBLanguage, Mode=TwoWay}"  VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5"  />
+        <TextBox x:Name="TextBoxDuration" Text="{Binding TBDuration, Mode=TwoWay}"  VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBox x:Name="TextBoxNumGuest" Text="{Binding TBNumGuest, Mode=TwoWay}"  VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="5" />
+        <Button Name="Search" Content="Search"    Command="{Binding SearchCommand}"  Grid.Row="4" Grid.Column="2" FontSize="28" Margin="210,0,21,0" />
+
+
+        <ListBox ItemsSource="{Binding Tours}" d:ItemsSource="{d:SampleData ItemCount=4} "  
+                 Grid.ColumnSpan="3" Grid.Row="5" 
+                 Margin="50,51,21,51" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 SelectedItem="{Binding SelectedTour}"
+                 BorderThickness="0" Grid.RowSpan="3"
+                 
+                 >
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <Border BorderBrush="Black" BorderThickness="2" >
+
+                        <Grid  Width="805" Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Labels -->
+                            <Image Source="{Binding Cover.Url}" Grid.Column="0" Grid.RowSpan="6" Stretch="Fill" />
+
+                            <!-- Text Boxes -->
+
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}"  FontWeight="Bold" FontSize="28" TextAlignment="Center"/>
+                            <Image Grid.Column="1" Grid.Row="1" Source="pack://application:,,,/Resources/Images/location.jpg" Height="30" Margin="238,0,338,0"   />
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding TourLocation}"  FontSize="28" Margin="267,0,0,0"   />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Duration}"  FontSize="28" Margin="267,0,0,0"  />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="days"  FontSize="28" Margin="302,0,0,0"  />
+                            <Image Grid.Column="1" Grid.Row="3" Source="pack://application:,,,/Resources/Images/language.png"  Height="30" Margin="235,0,330,0" />
+                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Language}"  FontSize="28" Margin="270,0,0,0"   />
+
+
+                            <!-- Images -->
+
+
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+
+        <Button Name="Reserve" Content="Reserve" Command="{Binding ReserveCommand}" Grid.Row="7" Grid.Column="2" FontSize="28" Margin="210,5,21,0"/>
+    </Grid>
+
+</Window>

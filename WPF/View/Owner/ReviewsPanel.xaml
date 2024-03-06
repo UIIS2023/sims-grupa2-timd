@@ -1,0 +1,148 @@
+﻿<Page x:Class="SimsProject.WPF.View.Owner.ReviewsPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:converter="clr-namespace:SimsProject.WPF.View.Converter"
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      mc:Ignorable="d"
+      d:Height="760" d:Width="945">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/OwnerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converter:DateOnlyToStringConverter x:Key="DateOnlyToStringConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Style="{StaticResource PanelCardBorder}">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <fa:IconImage Icon="BookOpen" Style="{StaticResource TitleIcon}"/>
+                    <TextBlock Text="Guest Reviews" Style="{StaticResource TitleText}"/>
+                </StackPanel>
+
+                <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                    To maintain objectivity, you can only view reviews from guests whom you have reviewed previously.
+                </TextBlock>
+
+                <DataGrid Style="{StaticResource PanelDataGrid}" DockPanel.Dock="Top"
+                          ItemsSource="{Binding AccommodationReviews, UpdateSourceTrigger=PropertyChanged}"
+                          IsReadOnly="True" SelectionMode="Single"
+                          AutoGenerateColumns="False" HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Guest" Binding="{Binding Guest.Username}" Width="0.75*"/>
+                        <DataGridTextColumn Header="Accommodation" Binding="{Binding Reservation.Accommodation.Name}" Width="1.2*"/>
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding Reservation.ArrivalDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="0.8*"/>
+                        <DataGridTextColumn Header="Days" Binding="{Binding Reservation.StayLength}" Width="0.5*"/>
+                        <DataGridTextColumn Header="Cleanliness" Binding="{Binding CleanlinessGrade}"/>
+                        <DataGridTextColumn Header="Owner" Binding="{Binding OwnerGrade}"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="2*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Style="{StaticResource PanelCardBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.7*"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0" LastChildFill="False">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <fa:IconImage Icon="PenToSquare" Style="{StaticResource TitleIcon}"/>
+                        <TextBlock Text="Review Guests" Style="{StaticResource TitleText}"/>
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                        Reminder that you have up to 5 days after a guest's stay to rate them.
+                    </TextBlock>
+                    <Separator DockPanel.Dock="Top"/>
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                        Please select the guest whose stay you would like to review:
+                    </TextBlock>
+
+                    <DataGrid Style="{StaticResource PanelDataGrid}" DockPanel.Dock="Top"
+                              ItemsSource="{Binding ReviewableReservations}"
+                              SelectedItem="{Binding SelectedReservation}"
+                              IsReadOnly="True" SelectionMode="Single"
+                              AutoGenerateColumns="False" HeadersVisibility="Column" Height="100">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Guest" Binding="{Binding Guest.Username}" Width="*"/>
+                            <DataGridTextColumn Header="Accommodation" Binding="{Binding Accommodation.Name}" Width="*"/>
+                            <DataGridTemplateColumn Header="Stay date" Width="1.5*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding ArrivalDate, Converter={StaticResource DateOnlyToStringConverter}}"/>
+                                            <Run Text="-"/>
+                                            <Run Text="{Binding CheckoutDate, Converter={StaticResource DateOnlyToStringConverter}}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+
+                <DockPanel Grid.Row="1" Visibility="{Binding IsReservationSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Separator DockPanel.Dock="Top" Height="auto"/>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Label Style="{StaticResource PanelLabel}">Selected Guest:</Label>
+                        <TextBlock Style="{StaticResource ParagraphText}"
+                                   Text="{Binding SelectedReservation.Guest.Username, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Label Style="{StaticResource PanelLabel}">Accommodation:</Label>
+                        <TextBlock Style="{StaticResource ParagraphText}"
+                                   Text="{Binding SelectedReservation.Accommodation.Name, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Label Style="{StaticResource PanelLabel}">Stay Date:</Label>
+                        <TextBlock Style="{StaticResource ParagraphText}">
+                        <Run Text="{Binding SelectedReservation.ArrivalDate, Converter={StaticResource DateOnlyToStringConverter}, NotifyOnSourceUpdated=True}" />
+                        <Run Text="-" />
+                        <Run Text="{Binding SelectedReservation.CheckoutDate, Converter={StaticResource DateOnlyToStringConverter}, NotifyOnSourceUpdated=True}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Separator DockPanel.Dock="Top" Height="auto"/>
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label Style="{StaticResource PanelLabel}">Cleanliness Grade</Label>
+                        <xctk:IntegerUpDown HorizontalAlignment="Left" Margin="15,0,5,5" Minimum="1" Maximum="5" Height="20" Width="120" 
+                                            Value="{Binding CleanlinessGrade, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label Style="{StaticResource PanelLabel}">Observance Grade</Label>
+                        <xctk:IntegerUpDown HorizontalAlignment="Left" Margin="15,0,5,5" Minimum="1" Maximum="5" Height="20" Width="120" 
+                                            Value="{Binding ObservanceGrade, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <Grid DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <Label Style="{StaticResource PanelLabel}">Additional Comment</Label>
+                            <xctk:WatermarkTextBox HorizontalAlignment="Left" Margin="15,0,5,0" AcceptsReturn="True" TextWrapping="Wrap" Watermark="Not required"  
+                                                   BorderBrush="DarkGreen" Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="60"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource PanelButton}" Content="Review" Command="{Binding ReviewCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" DockPanel.Dock="Top"/>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

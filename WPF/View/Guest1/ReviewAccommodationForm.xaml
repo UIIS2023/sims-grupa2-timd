@@ -1,0 +1,126 @@
+﻿<Page x:Class="SimsProject.WPF.View.Guest1.ReviewAccommodationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:SimsProject.Application.Localization"
+        xmlns:sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="{ns:Loc Review}" d:DesignHeight="1015" d:DesignWidth="980">
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding SubmitReviewCommand}" Gesture="F1" />
+        <KeyBinding Command="{Binding AddImageCommand}" Gesture="CTRL+F1" />
+        <KeyBinding Command="{Binding ViewImageCommand}" Gesture="CTRL+F2" />
+        <KeyBinding Command="{Binding GoBackCommand}" Gesture="ESC" />
+    </Page.InputBindings>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <Grid Width="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderBrush="Red" BorderThickness="1">
+                        <AdornedElementPlaceholder/>
+                    </Border>
+                    <TextBlock Margin="2 2 2 2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Text="{Binding [0].ErrorContent}" TextWrapping="Wrap" Foreground="red" FontSize="9"/>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Border Width="980" Height="660">
+        <ScrollViewer>
+            <Grid x:Name="InnerGrid" Margin="10 0 10 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="115"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="32" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Content="{ns:Loc Review}"/>
+                <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Source="{Binding Reservation.Accommodation.Cover.Url}" Stretch="Fill" Margin="5,5,5,5"/>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="0,-5,0,0" Content="{Binding Reservation.Accommodation.Name}"/>
+                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="0,-5,0,0" Content="{Binding Reservation.Accommodation.Location}"/>
+                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="0,-5,0,0" Content="{Binding Reservation.Accommodation.Type.Name}"/>
+                <GroupBox FontSize="24" Header="{ns:Loc CleanlinessD}" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton IsChecked="{Binding Path=ModeArray[4], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R15}" x:Name="Gb"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray[3], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R14}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray[2], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R13}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray[1], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R12}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray[0], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R11}"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="Rb2" FontSize="24" Header="{ns:Loc OwnerCorrectness}" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton IsChecked="{Binding Path=ModeArray2[4], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R25}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray2[3], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R24}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray2[2], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R23}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray2[1], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R22}"/>
+                        <RadioButton IsChecked="{Binding Path=ModeArray2[0], UpdateSourceTrigger=PropertyChanged}" Content="{ns:Loc R21}"/>
+                    </StackPanel>
+                </GroupBox>
+                <Label FontSize="24" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Content="{ns:Loc RenovationRecommendation}"/>
+                <TextBox Height="Auto" VerticalScrollBarVisibility="Auto" Padding="0 4 0 0" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding RenovationCommentText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="8"/>
+                <Label FontSize="24" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Content="{ns:Loc LevelOfUrgencyForRenovation}"/>
+                <ComboBox Style="{DynamicResource Cs2}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="8" SelectedIndex="{Binding UrgencyLevel, Mode=TwoWay}">
+                    <ComboBoxItem Content="{ns:Loc R30}"/>
+                    <ComboBoxItem Content="{ns:Loc R31}"/>
+                    <ComboBoxItem Content="{ns:Loc R32}"/>
+                    <ComboBoxItem Content="{ns:Loc R33}"/>
+                    <ComboBoxItem Content="{ns:Loc R34}"/>
+                    <ComboBoxItem Content="{ns:Loc R35}"/>
+                </ComboBox>
+                <Label FontSize="24" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6" Content="{ns:Loc AddImages}"/>
+                <TextBox FontSize="18" Text="{Binding UrlText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6"/>
+                <Button Style="{DynamicResource MenuButton}" Grid.Row="11" Grid.Column="6" Command="{Binding AddImageCommand}">
+                    <sharp:IconImage Icon="Plus" Style="{DynamicResource ButtonIcon}"/>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Grid.Row="11" Grid.Column="7" Command="{Binding ViewImageCommand}">
+                    <sharp:IconImage Icon="Images" Style="{DynamicResource ButtonIcon}"/>
+                </Button>
+                <Label FontSize="24" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="6" Content="{ns:Loc AdditionalComment}"/>
+                <TextBox Height="103" VerticalScrollBarVisibility="Auto" Padding="0 4 0 0" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding CommentText, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="8">
+                    <Validation.ErrorTemplate>
+                        <StaticResource ResourceKey="ErrorTemplate"/>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <Button Style="{DynamicResource MenuButton}" Grid.Row="14" Grid.Column="5" Command="{Binding SubmitReviewCommand}" Grid.ColumnSpan="3">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="ArrowUpFromBracket" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc SubmitReviewF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Grid.Row="15" Grid.Column="5" Command="{Binding GoBackCommand}" Grid.ColumnSpan="3">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="ArrowLeft" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc GoBackF}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Page>

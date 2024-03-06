@@ -1,0 +1,208 @@
+﻿<Window x:Class="SimsProject.WPF.View.Owner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"        
+        xmlns:ts="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
+        mc:Ignorable="d"
+        Title="Booking" WindowState="Maximized" Height="760" Width="1280">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/OwnerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                <GradientStop Color="#92BDA3" Offset="0" />
+                <GradientStop Color="#92BDA3" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" VerticalAlignment="Stretch">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1,0.5" EndPoint="0,0.5">
+                    <GradientStop Color="#92BDA3" Offset="0" />
+                    <GradientStop Color="#68a480" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource MenuButton}" Grid.Row="0" Height="120" Margin="10 10 10 10" 
+                        Command="{Binding OpenProfileCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="15 0 0 0">
+                            <Border Width="50" Height="50" CornerRadius="50">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                        <GradientStop Color="MediumAquamarine" Offset="0" />
+                                        <GradientStop Color="MediumSeaGreen" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <sharp:IconImage Icon="UserAlt" Foreground="#203428" VerticalAlignment="Center" Margin="8,0,8,0" Height="32"/>
+                            </Border>
+                            <sharp:IconImage Icon="Star" Foreground="Gold" VerticalAlignment="Top" IconFont="Solid" Height="16" Visibility="{Binding Owner.IsSuperUser, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="1,4,35,0"/>
+                        </Grid>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10 0 0 0">
+                            <TextBlock Style="{StaticResource MenuButtonText}"  Text="{Binding Owner.Username}" FontSize="20"/>
+                            <TextBlock Style="{StaticResource MenuButtonText}" FontSize="13">
+                                <Run Text="Accommodation"/>
+                                <LineBreak/>
+                                <Run Text="Owner"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Separator Grid.Row="1" Margin="10 0 10 0"/>
+
+                <!--Menu Buttons-->
+                <DockPanel Grid.Row="2" VerticalAlignment="Stretch" LastChildFill="False">
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenMainCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Main" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenAccommodationsCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="Building" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Accommodations" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenReservationsCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="CalendarDay" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenReviewsCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="ContactBook" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Reviews" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenRenovationsCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="PaintRoller" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Renovations" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource MenuButton}" Command="{Binding OpenForumCommand}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <sharp:IconImage Icon="Message" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Forum" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+                <Button Style="{StaticResource MenuButton}" Command="{Binding LogoutCommand}" Grid.Row="3" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="PowerOff" Style="{StaticResource MenuButtonIcon}" />
+                        <TextBlock Text="Logout" Style="{StaticResource MenuButtonText}" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!--Main Section-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
+            <!--Notifications Button-->
+            <Button Style="{StaticResource IconButton}" Command="{Binding OpenNotificationsCommand}"
+                    x:Name="NotificationButton"
+                    Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <sharp:IconImage Icon="Bell" Style="{StaticResource IconButtonIcon}" />
+            </Button>
+            <!--Notifications Popup-->
+            <Popup Grid.Row="1" Style="{StaticResource NotificationPopup}" IsOpen="{Binding IsNotificationPopupOpen}" PlacementTarget="{Binding ElementName=NotificationButton}">
+                <Border Style="{StaticResource PanelCardBorder}" BorderBrush="Black">
+                    <Grid Background="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Style="{StaticResource TitleText}" Grid.Row="0">Notifications</TextBlock>
+
+                        <Border Grid.Row="1" BorderBrush="LightSlateGray" BorderThickness="1" Width="300" CornerRadius="10">
+                            <DockPanel >
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+                                    <sharp:IconImage Icon="BellSlash" Style="{StaticResource TitleIcon}"/>
+                                    <TextBlock Text="Push Notifications" Style="{StaticResource TitleText}"/>
+                                </StackPanel>
+                                <ts:HorizontalToggleSwitch DockPanel.Dock="Right" IsChecked="True"
+                                                           CheckedBackground="MediumSeaGreen" UncheckedBackground="DarkGreen"
+                                                           VerticalAlignment="Center"/>
+                            </DockPanel>
+                        </Border>
+
+                        <ListView Style="{StaticResource NotificationListView}" Grid.Row="2"
+                                  ItemsSource="{Binding Notifications}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.GoToNotificationCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
+                                            CommandParameter="{Binding}" BorderThickness="0" Background="Transparent">
+                                        <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="10" Width="280">
+                                            <StackPanel Orientation="Horizontal">
+                                                <sharp:IconImage Icon="{Binding NotificationIconName}" Style="{StaticResource TitleIcon}" Width="20"/>
+                                                <TextBlock Style="{StaticResource ParagraphText}" Text="{Binding Message}" Width="180"/>
+                                                <sharp:IconImage Icon="ArrowRight" Style="{StaticResource TitleIcon}" Width="20"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Button>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel  Grid.Row="3">
+                            <Separator Margin="0 0 0 30"/>
+                            <Button Style="{StaticResource PanelButton}"
+                                    Content="See All Notifications" Command="{Binding OpenProfileCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Popup>
+
+            <!--Demo-->
+            <Button Style="{StaticResource IconButton}" Command="{Binding StartDemoCommand}"
+                    Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Start Demo" Style="{StaticResource IconButtonText}"/>
+                    <sharp:IconImage Icon="D" Style="{StaticResource IconButtonIcon}" />
+                </StackPanel>
+            </Button>
+
+            <!-- Panel -->
+            <Frame x:Name="Panel"  Grid.Row="1" Source="MainPanel.xaml" NavigationUIVisibility="Hidden" />
+
+        </Grid>
+    </Grid>
+</Window>

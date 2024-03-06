@@ -1,0 +1,140 @@
+﻿<Page x:Class="SimsProject.WPF.View.Owner.ForumPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      xmlns:wpf="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      d:Height="760" d:Width="945">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/OwnerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Style="{StaticResource PanelCardBorder}">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <fa:IconImage Icon="Message" Style="{StaticResource TitleIcon}"/>
+                    <TextBlock Text="Forums" Style="{StaticResource TitleText}"/>
+                </StackPanel>
+                <ListBox Style="{StaticResource ForumListBox}" DockPanel.Dock="Top"
+                          ItemsSource="{Binding Forums}"
+                          SelectedItem="{Binding SelectedForum}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="10">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource TitleText}" Text="{Binding TitlePost}"/>
+                                        <fa:IconImage Icon="ThumbsUp" Style="{StaticResource TitleIcon}" IconFont="Solid" 
+                                                      HorizontalAlignment="Left" Width="25" Height="30"
+                                                      ToolTip="Forum marked as useful"
+                                                      Visibility="{Binding IsUseful, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    </StackPanel>
+                                    <TextBlock Style="{StaticResource ParagraphText}" Text="{Binding Location}"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Style="{StaticResource PanelCardBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0">
+                    <TextBlock Style="{StaticResource TitleText}" DockPanel.Dock="Top" Text="{Binding SelectedForum.TitlePost}"/>
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top" Text="{Binding SelectedForum.Location}"/>
+                    <Separator DockPanel.Dock="Top"/>
+                    <ListBox Style="{StaticResource ForumListBox}" DockPanel.Dock="Top"
+                             ItemsSource="{Binding Comments}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="35" Height="35" CornerRadius="50" Margin="10 0 0 0">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                                    <GradientStop Color="MediumAquamarine" Offset="0" />
+                                                    <GradientStop Color="MediumSeaGreen" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                            <fa:IconImage Icon="UserAlt" Foreground="#203428" VerticalAlignment="Center" Margin="8,0,8,0" Height="20"/>
+                                        </Border>
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                                <TextBlock Style="{StaticResource TitleText}" Text="{Binding Author.Username}"/>
+                                                <fa:IconImage Icon="Star" Style="{StaticResource TitleIcon}" IconFont="Solid"
+                                                              ToolTip="{Binding LegitAuthorToolTip}"
+                                                              Visibility="{Binding IsAuthorValid, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                            </StackPanel>
+                                            <TextBlock Style="{StaticResource ParagraphText}" Text="{Binding Comment}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
+                                            <TextBlock Style="{StaticResource TitleText}" HorizontalAlignment="Right"
+                                                       Text="{Binding ReportCount}" FontSize="24" Margin="0 0 0 5"
+                                                       ToolTip="Number of users that reported this comment as false"/>
+                                            <Button Style="{StaticResource ForumButton}"
+                                                    Visibility="{Binding CanBeReported, Converter={StaticResource BooleanToVisibilityConverter}, NotifyOnSourceUpdated=True}"
+                                                    wpf:Awesome.Content="ThumbsDown" FontSize="24"
+                                                    ToolTip="{Binding CanReportToolTip}" IsEnabled="{Binding IsNotReported}" ToolTipService.ShowOnDisabled="True"
+                                                    Command="{Binding DataContext.ReportCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                                    CommandParameter="{Binding}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+
+                <DockPanel Grid.Row="1" Visibility="{Binding IsCommentingAllowed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Separator DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="35" Height="35" CornerRadius="50" Margin="10 0 0 0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="MediumAquamarine" Offset="0" />
+                                    <GradientStop Color="MediumSeaGreen" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <fa:IconImage Icon="UserAlt" Foreground="#203428" VerticalAlignment="Center" Margin="8,0,8,0" Height="20"/>
+                        </Border>
+                        <xctk:WatermarkTextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Watermark="Leave a comment..." Height="30" Width="490" Margin="10 0 0 0"/>
+                        <Button Style="{StaticResource PanelButton}" Content="Post" Command="{Binding PostCommand}" Margin="10 0 10 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

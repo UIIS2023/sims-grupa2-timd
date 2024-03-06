@@ -1,0 +1,205 @@
+﻿<Page x:Class="SimsProject.WPF.View.Owner.RenovationsPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+      mc:Ignorable="d"
+      d:Height="760" d:Width="945">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/OwnerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <Grid Width="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderBrush="DarkRed" BorderThickness="1">
+                        <AdornedElementPlaceholder/>
+                    </Border>
+                    <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" TextWrapping="Wrap" Foreground="DarkRed" FontSize="11"/>
+                </Grid>
+            </ControlTemplate>
+            <Style x:Key="IntegerUpDownStyle" TargetType="xctk:IntegerUpDown">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid Width="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" BorderBrush="DarkRed" BorderThickness="1">
+                                    <AdornedElementPlaceholder/>
+                                </Border>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" TextWrapping="Wrap" Foreground="DarkRed" FontSize="11"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource PanelCardBorder}">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <TextBlock Text="Upcoming Renovations" Style="{StaticResource TitleText}"/>
+                    <Button Style="{StaticResource IconButton}" Command="{Binding GenerateReportCommand}" 
+                            Margin="0" ToolTip="Generate Report"
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <sharp:IconImage Icon="FilePdf" Style="{StaticResource IconButtonIcon}" Margin="0 0 10 0"/>
+                    </Button>
+                </DockPanel>
+                <DataGrid Style="{StaticResource PanelDataGrid}" DockPanel.Dock="Top"
+                          ItemsSource="{Binding UpcomingRenovations}"
+                          SelectedItem="{Binding SelectedRenovation}"
+                          IsReadOnly="True" SelectionMode="Single"
+                          AutoGenerateColumns="False" HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Accommodation" Binding="{Binding Accommodation.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="1.5*" CanUserSort="False"/>
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="100" />
+                        <DataGridTextColumn Header="Days" Binding="{Binding Length}" Width="50"/>
+                        <DataGridTemplateColumn Header="" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource PanelButton}" Width="100" VerticalAlignment="Center"
+                                            ToolTip="Minimum 5-day notice required for cancellations" ToolTipService.ShowOnDisabled="True"
+                                            Content="Cancel" HorizontalAlignment="Center"
+                                            Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource PanelCardBorder}">
+            <DockPanel>
+                <TextBlock Text="Past Renovations" Style="{StaticResource TitleText}" DockPanel.Dock="Top"/>
+                <DataGrid Style="{StaticResource PanelDataGrid}" DockPanel.Dock="Top"
+                          ItemsSource="{Binding PastRenovations}"
+                          IsReadOnly="True" SelectionMode="Single"
+                          AutoGenerateColumns="False" HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Accommodation" Binding="{Binding Accommodation.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="1.5*" CanUserSort="False"/>
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="100" />
+                        <DataGridTextColumn Header="Days" Binding="{Binding Length}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource PanelCardBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.75*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <sharp:IconImage Icon="CalendarMinus" Style="{StaticResource TitleIcon}"/>
+                        <TextBlock Text="Schedule a Renovation" Style="{StaticResource TitleText}"/>
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                       Select the accommodation you want to renovate:
+                    </TextBlock>
+                    <ComboBox DockPanel.Dock="Top"
+                              ItemsSource="{Binding Accommodations}"
+                              SelectedItem="{Binding SelectedAccommodation}" 
+                              DisplayMemberPath="Name" Width="200" HorizontalAlignment="Left" Margin="10 0 0 10" />
+                    
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                        Write a short description of the renovation:
+                    </TextBlock>
+                    <TextBox VerticalContentAlignment="Center" Text="{Binding Description, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" DockPanel.Dock="Top" Margin="10 0 0 20" Height="20">
+                        <Validation.ErrorTemplate>
+                            <StaticResource ResourceKey="ErrorTemplate"/>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top" Margin="10 0 0 0">
+                        Select the time frame during which you would like to schedule the renovation:
+                    </TextBlock>
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                        <StackPanel DockPanel.Dock="Left">
+                            <Label Style="{StaticResource PanelLabel}" Margin="5 0 0 0">Start Date</Label>
+                            <DatePicker SelectedDate="{Binding DateRangeStart, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" Margin="10 0 0 0" FirstDayOfWeek="Monday">
+                                <DatePicker.BlackoutDates>
+                                    <CalendarDateRange Start="01/01/0001" End="{x:Static sys:DateTime.Today}"/>
+                                </DatePicker.BlackoutDates>
+                                <Validation.ErrorTemplate>
+                                    <StaticResource ResourceKey="ErrorTemplate"/>
+                                </Validation.ErrorTemplate>
+                            </DatePicker>
+                        </StackPanel>
+                        <StackPanel DockPanel.Dock="Right">
+                            <Label Style="{StaticResource PanelLabel}" Margin="5 0 0 0">End Date</Label>
+                            <DatePicker SelectedDate="{Binding DateRangeEnd, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" Margin="10 0 0 0" FirstDayOfWeek="Monday">
+                                <DatePicker.BlackoutDates>
+                                    <CalendarDateRange Start="01/01/0001" End="{x:Static sys:DateTime.Today}"/>
+                                </DatePicker.BlackoutDates>
+                                <Validation.ErrorTemplate>
+                                    <StaticResource ResourceKey="ErrorTemplate"/>
+                                </Validation.ErrorTemplate>
+                            </DatePicker>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                        <LineBreak/>Select the expected length of the renovation (in days):
+                    </TextBlock>
+                    <DockPanel DockPanel.Dock="Top">
+                        <xctk:IntegerUpDown Style="{StaticResource IntegerUpDownStyle}"
+                                            Value="{Binding Length, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" 
+                                            Minimum="1" Width="150" Height="20" Margin="10 0 0 0 ">
+                        </xctk:IntegerUpDown>
+                        <Button Style="{StaticResource PanelButton}" Content="Find Dates" 
+                                Command="{Binding FindDatesCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </DockPanel>
+                    <Separator DockPanel.Dock="Top" Height="20"/>
+                </DockPanel>
+
+                <DockPanel Grid.Row="1">
+                    <TextBlock Style="{StaticResource ParagraphText}" DockPanel.Dock="Top">
+                        Select a date from the available options and click the 'Schedule' button to confirm your renovation:
+                    </TextBlock>
+                    <DataGrid Style="{StaticResource PanelDataGrid}" DockPanel.Dock="Top" Height="90"
+                              ItemsSource="{Binding AvailableDateRanges}"
+                              SelectedItem="{Binding SelectedDateRange}"
+                              IsReadOnly="True" SelectionMode="Single"
+                              AutoGenerateColumns="False" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="1*" Header="Start Date" Binding="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            <DataGridTextColumn Width="1*" Header="End date" Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Style="{StaticResource PanelButton}" Content="Schedule"  
+                            Command="{Binding ScheduleCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" DockPanel.Dock="Top"/>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

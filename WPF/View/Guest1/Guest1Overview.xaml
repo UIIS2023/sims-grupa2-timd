@@ -1,0 +1,117 @@
+﻿<Window x:Class="SimsProject.WPF.View.Guest1.Guest1Overview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:SimsProject.Application.Localization"
+        xmlns:sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="{ns:Loc BA}" Height="700" Width="1265"
+        WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ProfileCommand}" Gesture="F3" />
+        <KeyBinding Command="{Binding SearchPageCommand}" Gesture="F4" />
+        <KeyBinding Command="{Binding YourReservationsCommand}" Gesture="F5" />
+        <KeyBinding Command="{Binding ReviewCommand}" Gesture="F6" />
+        <KeyBinding Command="{Binding AnywhereAnytimeCommand}" Gesture="F7" />
+        <KeyBinding Command="{Binding ForumsCommand}" Gesture="F8" />
+        <KeyBinding Command="{Binding HelpCommand}" Gesture="F9" />
+        <KeyBinding Command="{Binding ChangeThemeCommand}" Gesture="F10" />
+        <KeyBinding Command="{Binding ChangeLanguageCommand}" Gesture="F11" />
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="F12" />
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="ESC" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{DynamicResource BGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="265" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" x:Name="DockPanel" Margin="12 10 12 10">
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{DynamicResource ProfButton}" Grid.Row="0" Height="85" Command="{Binding ProfileCommand}"/>
+                    <Grid Grid.Row="0" Margin="5 5 5 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Margin="5 5 5 5" Grid.Column="0" IsHitTestVisible="False" Source="/Resources/Images/g1_profile.png" Height="75" Width="75"/>
+                        <sharp:IconImage Visibility="{Binding CurrentUser.IsSuperUser, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="55 0 0 55" Grid.Column="0" Icon="Star" Style="{DynamicResource ButtonIcon}" Height="30" Width="30"/>
+                        <Label Margin="0 0 0 30" IsHitTestVisible="False" Grid.Column="1" FontSize="32" Content="{Binding CurrentUser.Username}"/>
+                        <Label Margin="0 30 0 0" IsHitTestVisible="False" Grid.Column="1" FontSize="18" Content="{ns:Loc GuestProfileF}"/>
+                    </Grid>
+                </Grid>
+
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding SearchPageCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="MagnifyingGlass" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc Search}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding YourReservationsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="HouseChimney" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc YourReservationsF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding ReviewCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="ThumbsUp" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc ReviewF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding AnywhereAnytimeCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="LocationDot" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc AnywhereAnytimeF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding ForumsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="Comments" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc ForumsF}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding HelpCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="CircleInfo" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc HelpF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding ChangeThemeCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Visibility="{Binding IsDarkMode, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Icon="Sun" Style="{DynamicResource ButtonIcon}"/>
+                        <sharp:IconImage Visibility="{Binding IsLightMode, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Icon="Moon" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc ChangeThemeF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding ChangeLanguageCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="GlobeAmericas" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc ChangeLanguageF}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MenuButton}" Command="{Binding LogoutCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <sharp:IconImage Icon="RightFromBracket" Style="{DynamicResource ButtonIcon}"/>
+                        <Label Margin="0 -2 0 0" Content="{ns:Loc LogoutF}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Grid></Grid>
+        </DockPanel>
+
+        <Border Grid.Column="0" Grid.Row="0" BorderThickness="0 0 2 0" BorderBrush="Gray" />
+        <Frame x:Name="Panel" Grid.Column="1" Source="SearchPage.xaml" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>

@@ -1,0 +1,81 @@
+﻿<Page x:Class="SimsProject.WPF.View.Guest1.ForumsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:SimsProject.Application.Localization"
+        xmlns:sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="{ns:Loc Forums}" d:DesignHeight="660" d:DesignWidth="980">
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding CreateForumCommand}" Gesture="F1" />
+        <KeyBinding Command="{Binding OpenForumCommand}" Gesture="CTRL+F1" />
+        <KeyBinding Command="{Binding DeleteForumCommand}" Gesture="CTRL+F2" />
+    </Page.InputBindings>
+    <Grid Margin="10 0 10 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="32" Content="{ns:Loc Forums}"/>
+        <Button Style="{DynamicResource MenuButton}" Grid.Row="1" Grid.Column="0" Command="{Binding CreateForumCommand}" x:Name="Bt">
+            <StackPanel Orientation="Horizontal">
+                <sharp:IconImage Icon="Plus" Style="{DynamicResource ButtonIcon}"/>
+                <Label Margin="0 -2 0 0" Content="{ns:Loc CreateForumF}"/>
+            </StackPanel>
+        </Button>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="24" Content="{ns:Loc OForums}"/>
+        <DataGrid Style="{DynamicResource DGrid}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Forums, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedForum, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#77ffffff"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#1f1f1f"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="3*" Header="{ns:Loc Title}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding TitlePost}" Margin="0 0 5 0"/>
+                                <sharp:IconImage Margin="0 0 0 0" Width="15" Height="15" IconFont="Solid">
+                                    <sharp:IconImage.Style>
+                                        <Style TargetType="sharp:IconImage">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsUseful}" Value="True">
+                                                    <Setter Property="Icon" Value="Star"/>
+                                                    <Setter Property="Foreground" Value="Gold"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </sharp:IconImage.Style>
+                                </sharp:IconImage>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="1*" Header="{ns:Loc Location}" Binding="{Binding Location}"/>
+                <DataGridTextColumn Width="1*" Header="{ns:Loc NOC}" Binding="{Binding CommentCount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Style="{DynamicResource MenuButton}" Grid.Column="2" Grid.Row="4" Command="{Binding OpenForumCommand}">
+            <StackPanel Orientation="Horizontal">
+                <sharp:IconImage Icon="Eye" Style="{DynamicResource ButtonIcon}"/>
+                <Label Margin="0 -2 0 0" Content="{ns:Loc OpenForumF}"/>
+            </StackPanel>
+        </Button>
+        <Button Style="{DynamicResource MenuButton}" Grid.Column="2" Grid.Row="5" Command="{Binding DeleteForumCommand}">
+            <StackPanel Orientation="Horizontal">
+                <sharp:IconImage Icon="Times" Style="{DynamicResource ButtonIcon}"/>
+                <Label Margin="0 -2 0 0" Content="{ns:Loc DeleteForumF}"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Page>

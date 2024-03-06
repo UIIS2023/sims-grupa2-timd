@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="SimsProject.WPF.View.Guide.MainPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:view="clr-namespace:SimsProject.WPF.View"
+             xmlns:viewModel="clr-namespace:SimsProject.WPF.ViewModel"
+             xmlns:guide="clr-namespace:SimsProject.WPF.View.Guide"
+             mc:Ignorable="d" 
+             Height="750" Width="430">
+    <UserControl.Resources>
+        <viewModel:ImageCarouselConverter x:Key="ImageCarouselConverter" />
+        <DataTemplate x:Key="TourTemplate">
+            <Border x:Name="reviewBorder" BorderBrush="#355E3B" BorderThickness="1" CornerRadius="10" Background="#B2D2A4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <view:ImageCarousel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Width="260"
+                                        DataContext="{Binding Converter={StaticResource ImageCarouselConverter}}"
+                                        Content="{Binding}"> 
+                        <view:ImageCarousel.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Stretch" Value="Uniform" />
+                            </Style>
+                        </view:ImageCarousel.Resources>
+                    </view:ImageCarousel>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=Name}" Foreground="#023020"
+                               HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" FontFamily="Miriam Fixed"
+                               Margin="0, 10, 0, 0"/>
+
+                    <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
+                            guide:SelectItemOnClickBehavior.Command="{Binding Path=DataContext.OpenCancelTourCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                            HorizontalAlignment="Center" Height="28" Width="130" Background="#355E3B" Foreground="White" Margin="10, 0, 0, 0">
+                        <StackPanel Height="35" Width="170">
+                            <Grid Height="35" Width="170">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="23" Margin="5,0,0,10" Source="/Resources/Images/cancel.png"/>
+                                <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90" Height="35" Margin="0,0,0,5"  Foreground="White" FontSize="15" Content="Cancel tour"/>
+                            </Grid>
+                        </StackPanel>
+                    </Button>
+
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="Max Guest Number:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=MaxGuestNumber}" Margin="5, 5, 0, 0"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="Duration:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Duration}" Margin="5, 5, 0, 0"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="Tour Location:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=TourLocation}" Margin="5, 5, 0, 0"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="Language:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Language}" Margin="5, 5, 0, 0"/>
+
+                    <TextBlock Grid.Row="8" Grid.Column="1" Text="Tour Dates:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <ItemsControl Grid.Row="8" Grid.Column="2" ItemsSource="{Binding TourDatesViewModel.TourDates}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Date}" Margin="5, 2"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Grid.Row="9" Grid.Column="1" Text="CheckPoints:" FontWeight="Bold" Foreground="#023020" Margin="20, 5, 0, 0"/>
+                    <ItemsControl Grid.Row="9" Grid.Column="2" ItemsSource="{Binding CheckPointsViewModel.CheckPoints}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" Margin="5, 2"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="60,60,20,60">
+        <ListBox Name="TourReviewList" ItemsSource="{Binding Tours}"
+                 Background="#e1f2e4"
+                 SelectedItem="{Binding SelectedTour, Mode=TwoWay}" Margin="10, 0, 5, 10"
+                 ItemTemplate="{StaticResource TourTemplate}" 
+                 HorizontalContentAlignment="Stretch"/>
+    </Grid>
+</UserControl>

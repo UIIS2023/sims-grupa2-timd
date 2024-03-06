@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AAE" xml:space="preserve">
+    <value>No accommodations found.</value>
+  </data>
+  <data name="AbidingByTheRules" xml:space="preserve">
+    <value>Abiding By The Rules</value>
+  </data>
+  <data name="AccommodationName" xml:space="preserve">
+    <value>Accommodation Name:</value>
+  </data>
+  <data name="AccommodationType" xml:space="preserve">
+    <value>Accommodation Type:</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>Add Images</value>
+  </data>
+  <data name="AdditionalComment" xml:space="preserve">
+    <value>Additional Comment</value>
+  </data>
+  <data name="AName" xml:space="preserve">
+    <value>Accommodation Name</value>
+  </data>
+  <data name="ANC" xml:space="preserve">
+    <value>Add New Comment:</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="AnyF" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="AnywhereAnytime" xml:space="preserve">
+    <value>Anywhere, Anytime</value>
+  </data>
+  <data name="AnywhereAnytimeF" xml:space="preserve">
+    <value>Anywhere, Anytime (F7)</value>
+  </data>
+  <data name="ArrivalAndCheckoutDate" xml:space="preserve">
+    <value>Arrival And Checkout Date:</value>
+  </data>
+  <data name="ArrivalDate" xml:space="preserve">
+    <value>Arrival Date</value>
+  </data>
+  <data name="ArrivalDateRange" xml:space="preserve">
+    <value>Arrival Date Range:</value>
+  </data>
+  <data name="AvailableDates" xml:space="preserve">
+    <value>Available Dates</value>
+  </data>
+  <data name="AvailableToReview" xml:space="preserve">
+    <value>Available To Review</value>
+  </data>
+  <data name="AYL" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="AYS" xml:space="preserve">
+    <value>Are you sure you want to book:</value>
+  </data>
+  <data name="BA" xml:space="preserve">
+    <value>Booking App</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled.</value>
+  </data>
+  <data name="CancelReservationF" xml:space="preserve">
+    <value>Cancel Booking (F1)</value>
+  </data>
+  <data name="ChangeLanguageF" xml:space="preserve">
+    <value>Change Language (F11)</value>
+  </data>
+  <data name="ChangeThemeF" xml:space="preserve">
+    <value>Change Theme (F10)</value>
+  </data>
+  <data name="CheckoutDate" xml:space="preserve">
+    <value>Checkout Date</value>
+  </data>
+  <data name="Cleanliness" xml:space="preserve">
+    <value>Cleanliness</value>
+  </data>
+  <data name="CleanlinessD" xml:space="preserve">
+    <value>Cleanliness:</value>
+  </data>
+  <data name="CncCb" xml:space="preserve">
+    <value>Canceled Bookings</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments:</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="CountryAndCity" xml:space="preserve">
+    <value>Country And City:</value>
+  </data>
+  <data name="CR" xml:space="preserve">
+    <value>Comment reported</value>
+  </data>
+  <data name="CreateForumF" xml:space="preserve">
+    <value>Create Forum (F1)</value>
+  </data>
+  <data name="CreateNewForum" xml:space="preserve">
+    <value>Create New Forum</value>
+  </data>
+  <data name="DateRangeOpt" xml:space="preserve">
+    <value>Date Range (optional):</value>
+  </data>
+  <data name="DeleteForumF" xml:space="preserve">
+    <value>Close Forum (CTRL+F2)</value>
+  </data>
+  <data name="ERR1" xml:space="preserve">
+    <value>Length of stay must be a number</value>
+  </data>
+  <data name="ERR10" xml:space="preserve">
+    <value>Number of guests is above max </value>
+  </data>
+  <data name="ERR2" xml:space="preserve">
+    <value>Length of stay is required</value>
+  </data>
+  <data name="ERR3" xml:space="preserve">
+    <value>Number of guests must be a number</value>
+  </data>
+  <data name="ERR4" xml:space="preserve">
+    <value>Number of guests is required</value>
+  </data>
+  <data name="ERR5" xml:space="preserve">
+    <value>Date can not be in past</value>
+  </data>
+  <data name="ERR6" xml:space="preserve">
+    <value>Dates not in order</value>
+  </data>
+  <data name="ERR7" xml:space="preserve">
+    <value>Comment required</value>
+  </data>
+  <data name="ERR8" xml:space="preserve">
+    <value>Date required</value>
+  </data>
+  <data name="ERR9" xml:space="preserve">
+    <value>Length of stay is below min </value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorAddingImage" xml:space="preserve">
+    <value>Error adding image.</value>
+  </data>
+  <data name="FollowingTheRules" xml:space="preserve">
+    <value>Following The Rules</value>
+  </data>
+  <data name="Forums" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="ForumsF" xml:space="preserve">
+    <value>Forums (F8)</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>from</value>
+  </data>
+  <data name="GenerateF" xml:space="preserve">
+    <value>Generate (F1)</value>
+  </data>
+  <data name="GeneratePDF" xml:space="preserve">
+    <value>Generate PDF Report</value>
+  </data>
+  <data name="GoBackF" xml:space="preserve">
+    <value>Back (ESC)</value>
+  </data>
+  <data name="GuestProfileF" xml:space="preserve">
+    <value>Guest Profile (F3)</value>
+  </data>
+  <data name="HelpA" xml:space="preserve">
+    <value>ARROWS - Navigate in the selected datagrid or combobox</value>
+  </data>
+  <data name="HelpE" xml:space="preserve">
+    <value>ESC - Closes current window/page</value>
+  </data>
+  <data name="HelpF" xml:space="preserve">
+    <value>Help (F9)</value>
+  </data>
+  <data name="HelpL" xml:space="preserve">
+    <value>This icon indicates user was on that location</value>
+  </data>
+  <data name="HelpR" xml:space="preserve">
+    <value>ENTER - Opens image viewer for selected accommodation</value>
+  </data>
+  <data name="HelpS" xml:space="preserve">
+    <value>SHIFT-TAB - Cycles through controles in reverse</value>
+  </data>
+  <data name="HelpT" xml:space="preserve">
+    <value>TAB - Cycles through controls</value>
+  </data>
+  <data name="HelpW" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpZ" xml:space="preserve">
+    <value>This icon shows if forum is marked useful</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="ImageViewer" xml:space="preserve">
+    <value>Image Viewer</value>
+  </data>
+  <data name="InputNewDates" xml:space="preserve">
+    <value>Input New Dates</value>
+  </data>
+  <data name="LateCancel" xml:space="preserve">
+    <value>It is too late to cancel.</value>
+  </data>
+  <data name="LateReschedule" xml:space="preserve">
+    <value>It is too late to reschedule.</value>
+  </data>
+  <data name="LengthOfStay" xml:space="preserve">
+    <value>Length Of Stay:</value>
+  </data>
+  <data name="LevelOfUrgencyForRenovation" xml:space="preserve">
+    <value>Level Of Urgency For Renovation</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LogoutF" xml:space="preserve">
+    <value>Logout (F12)</value>
+  </data>
+  <data name="MakePDF" xml:space="preserve">
+    <value>PDF Report (CTRL+F2)</value>
+  </data>
+  <data name="MakeRescheduleRequest" xml:space="preserve">
+    <value>Make Reschedule Request</value>
+  </data>
+  <data name="MaxNumberOfGuests" xml:space="preserve">
+    <value>Max Number Of Guests</value>
+  </data>
+  <data name="MinDaysForReservation" xml:space="preserve">
+    <value>Min Days For Booking</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NAS" xml:space="preserve">
+    <value>No available in searched range. Recommendations listed.</value>
+  </data>
+  <data name="NOC" xml:space="preserve">
+    <value>Number Of Comments</value>
+  </data>
+  <data name="NotCncCb" xml:space="preserve">
+    <value>Scheduled Bookings</value>
+  </data>
+  <data name="NumberOfGuests" xml:space="preserve">
+    <value>Number Of Guests:</value>
+  </data>
+  <data name="OForums" xml:space="preserve">
+    <value>Other Forums:</value>
+  </data>
+  <data name="OpenForumF" xml:space="preserve">
+    <value>Open Forum (CTRL+F1)</value>
+  </data>
+  <data name="OpenForumFF" xml:space="preserve">
+    <value>Open Forum (F1)</value>
+  </data>
+  <data name="OrdinaryGuest" xml:space="preserve">
+    <value>Ordinary Guest</value>
+  </data>
+  <data name="OrdinaryGuestD" xml:space="preserve">
+    <value>Ordinary Guest:</value>
+  </data>
+  <data name="Otxt1" xml:space="preserve">
+    <value>You become a Super Guest if you have at least 10 bookings in a year. The Super Guest receives 5 points for a discount that can be used when booking during the next year. One point is spent after each booking.</value>
+  </data>
+  <data name="Otxt2" xml:space="preserve">
+    <value>Bookings during the last year: </value>
+  </data>
+  <data name="OwnerComment" xml:space="preserve">
+    <value>Owner Comment</value>
+  </data>
+  <data name="OwnerCorrectness" xml:space="preserve">
+    <value>Owner Correctness:</value>
+  </data>
+  <data name="PickUrgencyLevel" xml:space="preserve">
+    <value>Choose urgency level.</value>
+  </data>
+  <data name="PostCommentF" xml:space="preserve">
+    <value>Post Comment (F1)</value>
+  </data>
+  <data name="PostContent" xml:space="preserve">
+    <value>Post Content:</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ProfileB1" xml:space="preserve">
+    <value>Change Username</value>
+  </data>
+  <data name="ProfileB2" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ProfileB3" xml:space="preserve">
+    <value>Change Profile Photo</value>
+  </data>
+  <data name="R11" xml:space="preserve">
+    <value>1 Very Dirty</value>
+  </data>
+  <data name="R12" xml:space="preserve">
+    <value>2 Dirty</value>
+  </data>
+  <data name="R13" xml:space="preserve">
+    <value>3 Somewhat Clean</value>
+  </data>
+  <data name="R14" xml:space="preserve">
+    <value>4 Clean</value>
+  </data>
+  <data name="R15" xml:space="preserve">
+    <value>5 Very Clean</value>
+  </data>
+  <data name="R21" xml:space="preserve">
+    <value>1 Unacceptable</value>
+  </data>
+  <data name="R22" xml:space="preserve">
+    <value>2 Poor</value>
+  </data>
+  <data name="R23" xml:space="preserve">
+    <value>3 Fair</value>
+  </data>
+  <data name="R24" xml:space="preserve">
+    <value>4 Good</value>
+  </data>
+  <data name="R25" xml:space="preserve">
+    <value>5 Excellent</value>
+  </data>
+  <data name="R30" xml:space="preserve">
+    <value>No need for renovation</value>
+  </data>
+  <data name="R31" xml:space="preserve">
+    <value>1 - It would be nice to renovate some small things, but everything works as it should without it</value>
+  </data>
+  <data name="R32" xml:space="preserve">
+    <value>2 - Small complaints about the accommodation which if removed would make it perfect</value>
+  </data>
+  <data name="R33" xml:space="preserve">
+    <value>3 - A few things that really bothered me should be renovated</value>
+  </data>
+  <data name="R34" xml:space="preserve">
+    <value>4 - There are a lot of bad things and renovation is really necessary</value>
+  </data>
+  <data name="R35" xml:space="preserve">
+    <value>5 - The accommodation is in a very bad condition and is not worth booking unless it is renovated</value>
+  </data>
+  <data name="RangePDF" xml:space="preserve">
+    <value>Date Range:</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove (F1)</value>
+  </data>
+  <data name="Renovated" xml:space="preserve">
+    <value>Renovated</value>
+  </data>
+  <data name="RenovationRecommendation" xml:space="preserve">
+    <value>Renovation Recommendation</value>
+  </data>
+  <data name="RequestRescheduleF" xml:space="preserve">
+    <value>Request Reschedule (F2)</value>
+  </data>
+  <data name="RequestSent" xml:space="preserve">
+    <value>Request sent.</value>
+  </data>
+  <data name="ReserveAccommodation" xml:space="preserve">
+    <value>Book Accommodation</value>
+  </data>
+  <data name="ReserveF" xml:space="preserve">
+    <value>Book (F2)</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="ReviewF" xml:space="preserve">
+    <value>Review (F6)</value>
+  </data>
+  <data name="ReviewFa" xml:space="preserve">
+    <value>Review (F1)</value>
+  </data>
+  <data name="ReviewsAboutYou" xml:space="preserve">
+    <value>Reviews About You</value>
+  </data>
+  <data name="RS" xml:space="preserve">
+    <value>Review sent.</value>
+  </data>
+  <data name="SCC" xml:space="preserve">
+    <value>Select Country And City:</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search (F4)</value>
+  </data>
+  <data name="SearchAccommodation" xml:space="preserve">
+    <value>Search Accommodation</value>
+  </data>
+  <data name="SearchF" xml:space="preserve">
+    <value>Search (F1)</value>
+  </data>
+  <data name="SelForum" xml:space="preserve">
+    <value>Selected Forum</value>
+  </data>
+  <data name="SendRequestF" xml:space="preserve">
+    <value>Send Request (F1)</value>
+  </data>
+  <data name="Stat1" xml:space="preserve">
+    <value>Total number of bookings: </value>
+  </data>
+  <data name="Stat2" xml:space="preserve">
+    <value>null</value>
+  </data>
+  <data name="Stat3" xml:space="preserve">
+    <value>Cleanliness: </value>
+  </data>
+  <data name="Stat4" xml:space="preserve">
+    <value>Compliance: </value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StatusOfRescheduleRequests" xml:space="preserve">
+    <value>Status Of Reschedule Requests</value>
+  </data>
+  <data name="Stxt1" xml:space="preserve">
+    <value>Points remaining: </value>
+  </data>
+  <data name="Stxt2" xml:space="preserve">
+    <value>Expiry date: </value>
+  </data>
+  <data name="Stxt3" xml:space="preserve">
+    <value>Bookings in the current period: </value>
+  </data>
+  <data name="Stxt4" xml:space="preserve">
+    <value>To remain a Super Guest you must have at least 10 bookings by the expiry date. Points will be reset on expiry date.</value>
+  </data>
+  <data name="SubmitReviewF" xml:space="preserve">
+    <value>Submit Review (F1)</value>
+  </data>
+  <data name="SuperGuest" xml:space="preserve">
+    <value>Super Guest</value>
+  </data>
+  <data name="SuperGuestD" xml:space="preserve">
+    <value>Super Guest:</value>
+  </data>
+  <data name="SuperGuestPoints" xml:space="preserve">
+    <value>Super Guest Points:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="TT" xml:space="preserve">
+    <value>time/s</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="TypePDF" xml:space="preserve">
+    <value>Type Of Report:</value>
+  </data>
+  <data name="ViewRequestStatusF" xml:space="preserve">
+    <value>Request Status (CTRL+F1)</value>
+  </data>
+  <data name="YourReservations" xml:space="preserve">
+    <value>Your Bookings</value>
+  </data>
+  <data name="YourReservationsF" xml:space="preserve">
+    <value>Your Bookings (F5)</value>
+  </data>
+</root>

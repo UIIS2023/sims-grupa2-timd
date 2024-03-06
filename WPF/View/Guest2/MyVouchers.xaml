@@ -1,0 +1,59 @@
+﻿<Page x:Class="SimsProject.WPF.View.Guest2.MyVouchers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimsProject.WPF.View.Guest2"
+        xmlns:loc="clr-namespace:SimsProject.WPF.ViewModel.Guest2"
+        mc:Ignorable="d"
+        Title="MyVouchers" Height="500" Width="1100" Background="PeachPuff"
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        ScrollViewer.VerticalScrollBarVisibility="Hidden">
+    <Grid Margin="0,0,0,0">
+        <Label Content="Congratulations!" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,405" FontWeight="Bold" />
+
+        <Border BorderBrush="#FFC7BDBD" BorderThickness="2" Background="Transparent" CornerRadius="5" Padding="10" Margin="50,95,411,325">
+            <TextBlock Text="If you go on 5 tours of any kind in a year, you win a voucher that lasts for 6 months and can be used for any tour!" 
+                       FontSize="20" 
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"/>
+        </Border>
+
+        <ListBox ItemsSource="{Binding Vouchers}" d:ItemsSource="{d:SampleData ItemCount=4}"
+                 Margin="50,214,648,10"  
+                 Background="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 BorderThickness="0"
+                 
+                      
+                 >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="300" Width="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="151"  />
+                            <ColumnDefinition  Width="149"  />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"  />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="pack://application:,,,/Resources/Images/goldvoucherr.jpg"   Stretch="Fill" Margin="0,0,-77,33" Grid.RowSpan="2" />
+                        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="24">Voucher ID :</Label>
+                        <TextBlock Grid.Row="1" Text="{Binding Id}"  FontSize="24" Margin="5,6,0,0" Grid.Column="1"  />
+                        <Label  Grid.Column="0" FontWeight="Bold" FontSize="24" Grid.Row="2" VerticalAlignment="Center" Height="52">Valid until :</Label>
+                        <TextBlock Grid.Row="2" Grid.Column="1"  Text="{Binding ValidUntil}" FontSize="24" VerticalAlignment="Center" Height="42" Margin="5,0,-90,0" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Margin="0,54,0,0"   />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ListBox>
+
+    </Grid>
+</Page>

@@ -1,0 +1,85 @@
+﻿<Page x:Class="SimsProject.WPF.View.Guest2.Statistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:wp="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+      xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:local="clr-namespace:SimsProject.WPF.View.Guest2" 
+    
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="900"
+      Background="PeachPuff"
+      >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/Guest2Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="240"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Label Content="Select Year : " FontSize="28" FontWeight="Black" Margin="20,50,247,144"/>
+            <ComboBox Margin="225,62,129,150" ItemsSource="{Binding YearList, Mode=OneWay}" SelectedItem="{Binding SelectedYear, Mode=TwoWay}" />
+            <Label Content="Average GuestNum : " FontSize="28" Margin="20,120,123,67" FontWeight="Black" />
+            <TextBlock Text="{Binding AveragePeople, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="332,132,51,80" FontSize="24"/>
+        </Grid>
+        <Label Content="Statistics" FontSize="30" FontWeight="Black" Grid.ColumnSpan="2" Grid.Row="0" HorizontalContentAlignment="Center"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+
+            <wpf:PieChart HorizontalAlignment="Left"  Series="{Binding StatisticsChart}" Margin="28,23,0,60" Width="430" >
+                <wpf:PieChart.ChartLegend>
+
+                    <wpf:DefaultLegend  VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+                </wpf:PieChart.ChartLegend>
+            </wpf:PieChart>
+
+        </Grid>
+
+
+
+
+        <Grid Grid.Row="2" Grid.Column="0" Margin="0,0,0,69">
+            <wpf:CartesianChart Series="{Binding LanguageSeries}" Grid.Row="0" Grid.Column="0" Margin="55,10,55,0" Width="340" Height="175" VerticalAlignment="Top" >
+
+
+                <wpf:CartesianChart.AxisX>
+                    <wpf:Axis Title="Languages" Labels="{Binding LanguageSeries.Labels}" ShowLabels="True" />
+                </wpf:CartesianChart.AxisX>
+
+                <wpf:CartesianChart.AxisY>
+                    <wpf:Axis Title="RequestNumber"  />
+                </wpf:CartesianChart.AxisY>
+            </wpf:CartesianChart>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,69">
+            <wpf:CartesianChart Series="{Binding LocationSeries}" Grid.Column="0" Margin="55,10,55,0" Width="340" Height="175" VerticalAlignment="Center" >
+
+
+                <wpf:CartesianChart.AxisX>
+                    <wpf:Axis Title="Locations" Labels="{Binding LocationSeries.Labels}" ShowLabels="True" />
+                </wpf:CartesianChart.AxisX>
+
+                <wpf:CartesianChart.AxisY>
+                    <wpf:Axis Title="RequestNumber"  />
+                </wpf:CartesianChart.AxisY>
+            </wpf:CartesianChart>
+        </Grid>
+
+        <Button  Content="Back" FontSize="28" Grid.Row="2" Command="{Binding CancelCommand}" Style="{StaticResource Button}" Margin="96,178,258,23"/>
+    </Grid>
+</Page>

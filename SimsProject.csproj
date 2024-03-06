@@ -1,0 +1,199 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Images\icon.ico</ApplicationIcon>
+	  <NoWarn>NU1701</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\accepted.png" />
+    <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\add_image.png" />
+    <None Remove="Resources\Images\background1.jpg" />
+    <None Remove="Resources\Images\cancel.png" />
+    <None Remove="Resources\Images\checkpoint.png" />
+    <None Remove="Resources\Images\clear.png" />
+    <None Remove="Resources\Images\comment.png" />
+    <None Remove="Resources\Images\complex3.png" />
+    <None Remove="Resources\Images\create.png" />
+    <None Remove="Resources\Images\date.png" />
+    <None Remove="Resources\Images\date2.png" />
+    <None Remove="Resources\Images\datee2.png" />
+    <None Remove="Resources\Images\default.png" />
+    <None Remove="Resources\Images\delete.png" />
+    <None Remove="Resources\Images\g1_profile.png" />
+    <None Remove="Resources\Images\g2-view.png" />
+    <None Remove="Resources\Images\Gift.png" />
+    <None Remove="Resources\Images\gift4.jpg" />
+    <None Remove="Resources\Images\goldvoucherr.jpg" />
+    <None Remove="Resources\Images\guest.png" />
+    <None Remove="Resources\Images\guide.png" />
+    <None Remove="Resources\Images\language.png" />
+    <None Remove="Resources\Images\live.png" />
+    <None Remove="Resources\Images\live_tracking.png" />
+    <None Remove="Resources\Images\loc.png" />
+    <None Remove="Resources\Images\log_out.png" />
+    <None Remove="Resources\Images\menu.png" />
+    <None Remove="Resources\Images\notification.ico" />
+    <None Remove="Resources\Images\pdf.png" />
+    <None Remove="Resources\Images\pie_chart.png" />
+    <None Remove="Resources\Images\plane.png" />
+    <None Remove="Resources\Images\plus.png" />
+    <None Remove="Resources\Images\present.png" />
+    <None Remove="Resources\Images\remove.png" />
+    <None Remove="Resources\Images\request.png" />
+    <None Remove="Resources\Images\requestt.png" />
+    <None Remove="Resources\Images\request_statistics.png" />
+    <None Remove="Resources\Images\reserve.png" />
+    <None Remove="Resources\Images\reserved.png" />
+    <None Remove="Resources\Images\resignation.png" />
+    <None Remove="Resources\Images\return.png" />
+    <None Remove="Resources\Images\review.jpg" />
+    <None Remove="Resources\Images\review.png" />
+    <None Remove="Resources\Images\search.png" />
+    <None Remove="Resources\Images\searchh.png" />
+    <None Remove="Resources\Images\start.png" />
+    <None Remove="Resources\Images\stat.png" />
+    <None Remove="Resources\Images\status.png" />
+    <None Remove="Resources\Images\tourVisits.png" />
+    <None Remove="Resources\Images\tour_request.png" />
+    <None Remove="Resources\Images\waiting.png" />
+    <None Remove="Resources\Images\white_add.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\add.png" />
+    <Resource Include="Resources\Images\add_image.png" />
+    <Resource Include="Resources\Images\checkpoint.png" />
+    <Resource Include="Resources\Images\comment.png" />
+    <Resource Include="Resources\Images\complex3.png" />
+    <Resource Include="Resources\Images\date.png" />
+    <Resource Include="Resources\Images\default.png" />
+    <Resource Include="Resources\Images\delete.png" />
+    <Resource Include="Resources\Images\clear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\g2-view.png" />
+    <Resource Include="Resources\Images\Gift.png" />
+    <Resource Include="Resources\Images\gift4.jpg" />
+    <Resource Include="Resources\Images\goldvoucherr.jpg" />
+    <Resource Include="Resources\Images\guest.png" />
+    <Resource Include="Resources\Images\language.png" />
+    <Resource Include="Resources\Images\live_tracking.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\loc.png" />
+    <Resource Include="Resources\Images\menu.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\notification.ico" />
+    <Resource Include="Resources\Images\pdf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pie_chart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\g1_profile.png" />
+    <Resource Include="Resources\Images\plane.png" />
+    <Resource Include="Resources\Images\plus.png" />
+    <Resource Include="Resources\Images\present.png" />
+    <Resource Include="Resources\Images\remove.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\cancel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\create.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\guide.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\live.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\log_out.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\request.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\requestt.png" />
+    <Resource Include="Resources\Images\request_statistics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\reserve.png" />
+    <Resource Include="Resources\Images\reserved.png" />
+    <Resource Include="Resources\Images\resignation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\return.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\review.jpg" />
+    <Resource Include="Resources\Images\review.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\searchh.png" />
+    <Resource Include="Resources\Images\start.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\stat.png" />
+    <Resource Include="Resources\Images\status.png" />
+    <Resource Include="Resources\Images\tourVisits.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\tour_request.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\white_add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94" />
+    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MaterialMessageBox" Version="4.0.2" />
+    <PackageReference Include="PDFsharp-MigraDoc-GDI" Version="1.50.5147" />
+    <PackageReference Include="PdfSharpCore" Version="1.3.56" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+    <PackageReference Include="ToggleSwitch" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

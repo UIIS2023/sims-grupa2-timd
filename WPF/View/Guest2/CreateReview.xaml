@@ -1,0 +1,107 @@
+﻿<Page x:Class="SimsProject.WPF.View.Guest2.CreateReview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimsProject.WPF.View.Guest2"
+        mc:Ignorable="d"
+        Height="530" Width="900" Background="PeachPuff">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Styles/Guest2Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="0,0,0,-6">
+        <!-- Postavite kolone za lijevu i desnu stranu -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Postavite redove za kategorije -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <!-- Dodajte još redova za ostale kategorije -->
+        </Grid.RowDefinitions>
+
+        <!-- Lijeva strana za nazive kategorija -->
+
+        <TextBlock Text="Create Review" FontSize="30"  Grid.Row="0" Grid.ColumnSpan="2" TextAlignment="Center" FontWeight="Black" />
+        <TextBlock Text="Guide's Knowledge "  FontSize="24" Grid.Row="1" Margin="130,0,0,0"  />
+        <TextBlock Text="Guide's Language" Grid.Row="2" FontSize="24" Margin="130,0,0,0"  />
+        <TextBlock Text="Tour's Interestigness" Grid.Row="3" FontSize="24" Margin="130,0,0,0"   />
+        <!-- Dodajte još TextBlockova za ostale kategorije -->
+
+
+        <!-- Desna strana za radio buttone za kategorije -->
+
+
+        <StackPanel Margin="100,0,0,0" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+
+            <RadioButton Content="1" Margin="40,10,10,0" IsChecked="{Binding Path=ModeArray[0],UpdateSourceTrigger=PropertyChanged}" />
+            <RadioButton Content="2" Margin="10,10,10,0"  IsChecked="{Binding Path=ModeArray[1],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="3" Margin="10,10,10,0"   IsChecked="{Binding Path=ModeArray[2],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="4" Margin="10,10,10,0"  IsChecked="{Binding Path=ModeArray[3],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="5" Margin="10,10,0,0"  IsChecked="{Binding Path=ModeArray[4],UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Margin="100,0,0,0" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+
+            <RadioButton Content="1" Margin="40,10,10,0"   IsChecked="{Binding Path=ModeArray2[0],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="2" Margin="10,10,10,0"    IsChecked="{Binding Path=ModeArray2[1],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="3" Margin="10,10,10,0"    IsChecked="{Binding Path=ModeArray2[2],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="4" Margin="10,10,10,0"   IsChecked="{Binding Path=ModeArray2[3],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="5" Margin="10,10,0,0"   IsChecked="{Binding Path=ModeArray2[4],UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <StackPanel Margin="100,0,0,0" Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+
+            <RadioButton Content="1" Margin="40,10,10,0"   IsChecked="{Binding Path=ModeArray3[0],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="2" Margin="10,10,10,0"   IsChecked="{Binding Path=ModeArray3[1],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="3" Margin="10,10,10,0"   IsChecked="{Binding Path=ModeArray3[2],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="4" Margin="10,10,10,0"   IsChecked="{Binding Path=ModeArray3[3],UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Content="5" Margin="10,10,0,0"   IsChecked="{Binding Path=ModeArray3[4],UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+
+
+        <Label FontSize="24" VerticalContentAlignment="Center"  Grid.Column="0"  Grid.Row="4" Margin="130,0,0,0">Your Comment</Label>
+        <TextBox VerticalScrollBarVisibility="Auto" Padding="0 4 0 0" TextWrapping="Wrap" AcceptsReturn="True" FontSize="18" Text="{Binding CommentText}"  VerticalContentAlignment="Top" Grid.Row="4" Grid.Column="1" Background="White" Margin="143,0,150,0"/>
+        <Label FontSize="24" VerticalContentAlignment="Center"  Grid.Row="5" Margin="130,0,0,0" >Upload Pictures</Label>
+        <TextBox FontSize="18" Text="{Binding UrlText,UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="5" Margin="143,5,150,0" />
+
+        <Menu Margin="355,5,10,34" FontSize="18" Grid.Column="1"  Grid.Row="5" Background="Transparent" Cursor="Hand" BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2"   >
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+            <MenuItem Header="  Upload" FontSize="24"   FontWeight="Medium" Command="{Binding AddImageCommand}"   Cursor="Hand" >
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Images/add_image.png" Stretch="Fill" Margin="0,-4,-19,-10" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="  View" FontSize="24"   FontWeight="Medium" Command="{Binding ViewImageCommand}"  Cursor="Hand" Margin="0,10,0,0" >
+                <MenuItem.Icon>
+                    <Image Source="/Resources/Images/g2-view.png" Stretch="Fill" Margin="5,-4,-19,-10" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+
+
+
+
+        <Button FontSize="28" x:Name="Submit" Content="Submit"  Style="{StaticResource Button}"  Command="{Binding SubmitReviewCommand}"  Grid.Row="7" Grid.Column="1"  Margin="210,28,150,42"  />
+        <Button FontSize="28" Content="Cancel" Style="{StaticResource Button}" Command="{Binding CancelCommand}" Grid.Row="7" Grid.Column="0"  Margin="130,28,130,42"  />
+    </Grid>
+</Page>
